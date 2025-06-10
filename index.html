@@ -34,6 +34,12 @@
       text-align: left;
       padding-left: 26px;
     }
+    p.p {
+      font-size: 18px;
+      color: #333;
+      text-align: left;
+      padding-left: 27px;
+    }
 
     input {
       padding: 10px;
@@ -93,6 +99,14 @@
       height: calc(100vh - 80px); /* Ajusta para compensar o header */
     }
 
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px;
+    }   
+
+
     @media (max-width: 768px) {
       header h1 {
         font-size: 20px;
@@ -140,7 +154,7 @@
       <input type="text" id="loginInput" placeholder="Login">
       <div style="position: relative; display: inline-block;">
         <input type="password" id="senha" placeholder="Senha" style="padding-right: 40px;">
-        <button type="button" onclick="toggleSenha()" style="position: absolute; right: 0; top: 0; height: 100%; background: none; border: none; cursor: pointer; font-size: 18px;"><img src="assets/src/hide.png" height="23px" width="23px"/></button>
+        <button type="button" onclick="toggleSenha()" style="position: absolute; right: 0; top: 0; height: 100%; background: none; border: none; cursor: pointer; font-size: 18px;"><img src="hide.png" height="23px" width="23px"/></button>
       </div>
       <button onclick="verificarSenha()">Entrar</button>
       <p id="erro" style="color:red;"></p>
@@ -150,15 +164,48 @@
   <div id="conteudo">
     <h1 class="h1">Painel Administrativo Suporte</h1>
     <p class="p">Bem-vindo ao Painel de Gerenciamento de Sellers do Marketplace Panvel.</p>
-    </div>
 
+        <div class="admin-buttons">
+            <a href="hunting.html" class="admin-btn" target="_blank">Acessar Gestão de Hunting</a>
+            <a href="farming.html" class="admin-btn" title="Farming" target="_blank">Acessar Gestão de Farming</a>
+            <a href="dashboard.html" class="admin-btn" title="Dashboard" target="_blank">Acessar Dashboard</a>
+        </div>
+        <style>
+            .admin-buttons {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 40px;
+                gap: 20px;
+            }
+            .admin-btn {
+                background-color: #173C8E;
+                color: #fff;
+                padding: 16px 32px;
+                border: none;
+                border-radius: 8px;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: bold;
+                text-align: center;
+                transition: background 0.2s;
+                box-shadow: 0 2px 8px rgba(23,60,142,0.08);
+                cursor: pointer;
+                min-width: 260px;
+            }
+            .admin-btn:hover {
+                background-color: #00BFDF;
+                color: #fff;
+            }
+        </style>
+    </div>
   <script>
     function verificarSenha() {
       const login = document.getElementById("loginInput").value;
       const senha = document.getElementById("senha").value;
 
       const loginCorreto = "admin"; // seu login
-      const senhaCorreta = "infinita123"; // sua senha
+      const senhaCorreta = "1234"; // sua senha
 
       // Ofuscação simples (não segura, mas oculta no código)
       const loginHash = btoa(login);
