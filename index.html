@@ -67,6 +67,32 @@
       color: white;
     }
 
+    #conteudo {
+      display: none;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #173C8E;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #5ff1f6;
+    }
+
+    .login-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 80px); /* Ajusta para compensar o header */
+    }
+
     @media (max-width: 768px) {
       header h1 {
         font-size: 20px;
@@ -90,17 +116,74 @@
       height: calc(100vh - 80px);
       border: none;
     }
+
+  #conteudo h1 {
+    font-size: 22px;
+    text-align: center;
+  }
+    
   </style>
 </head>
 <body>
   <header>
     <h1>Gestão de Seller Panvel</h1>
     <div class="header-buttons">
-      <a href=hunting.html">Gestão de Hunting</a>
+      <a href="hunting.html">Gestão de Hunting</a>
       <a href="farming.html">Gestão de Farming</a>
       <a href="dashboard.html">Dashboard</a>
     </div>
   </header>
-Em desenvolvimento
+<div class="login-wrapper" id="login-wrapper">
+    <div id="login">
+      <h2>Área restrita</h2>
+      <p>Digite o login e a senha para acessar:</p>
+      <input type="text" id="loginInput" placeholder="Login">
+      <div style="position: relative; display: inline-block;">
+        <input type="password" id="senha" placeholder="Senha" style="padding-right: 40px;">
+        <button type="button" onclick="toggleSenha()" style="position: absolute; right: 0; top: 0; height: 100%; background: none; border: none; cursor: pointer; font-size: 18px;"><img src="assets/src/hide.png" height="23px" width="23px"/></button>
+      </div>
+      <button onclick="verificarSenha()">Entrar</button>
+      <p id="erro" style="color:red;"></p>
+    </div>
+  </div>
+
+  <div id="conteudo">
+    <h1 class="h1">Painel Administrativo Suporte</h1>
+    <p class="p">Bem-vindo ao Painel de Gerenciamento de Sellers do Marketplace Panvel.</p>
+    </div>
+
+  <script>
+    function verificarSenha() {
+      const login = document.getElementById("loginInput").value;
+      const senha = document.getElementById("senha").value;
+
+      const loginCorreto = "admin"; // seu login
+      const senhaCorreta = "infinita123"; // sua senha
+
+      // Ofuscação simples (não segura, mas oculta no código)
+      const loginHash = btoa(login);
+      const senhaHash = btoa(senha);
+
+      if (loginHash === btoa(loginCorreto) && senhaHash === btoa(senhaCorreta)) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("login-wrapper").style.display = "none";
+        document.getElementById("conteudo").style.display = "block";
+      } else {
+        document.getElementById("erro").textContent = "Login ou senha incorretos!";
+      }
+    }
+
+    document.addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        verificarSenha();
+      }
+    });
+
+    function toggleSenha() {
+      const campoSenha = document.getElementById("senha");
+      campoSenha.type = campoSenha.type === "password" ? "text" : "password";
+    }
+  </script>
+
 </body>
 </html>
